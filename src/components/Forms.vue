@@ -40,10 +40,17 @@
       </form>
     </div>
 
+    <div class="col-lg-9">
+      <Tables :products="products" @remove-product="removeProductUpdate" />
+    </div>
   </div>
 </template>
 <script>
+import Tables from "@/components/Tables.vue";
 export default {
+  components: {
+    Tables
+  },
   data() {
     return {
       name: "",
