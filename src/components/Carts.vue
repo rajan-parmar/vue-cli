@@ -267,6 +267,16 @@
             applyDiscount() {
                 let type = document.getElementById("discount-type").value;
                 let value = document.getElementById("discount-value").value;
+
+                if (this.addToCarts.length === 0) {
+                    this.$toasted.error('Empty Cart', {
+                        position: 'top-right',
+                        duration: 900
+                    });
+
+                    return;
+                }
+
                 if (value == "") {
                     this.$toasted.error('Please enter discount value', {
                         position: 'top-right',
@@ -275,6 +285,7 @@
 
                     return;
                 }
+
                 this.finalDiscountType = type;
                 this.finalDiscountValue = value;
             },
