@@ -128,13 +128,20 @@
                 const vm = this;
                 if (this.finalDiscountType === "$") {
                     if (this.finalDiscountValue > this.finalSubTotal) {
-                    alert("Something went wrong");
-                    return;
+                        this.$toasted.error('Something went wrong', {
+                            position: 'top-right',
+                            duration: 900
+                        });
+
+                        return;
                     }
 
                     vm.discountValue = true;
 
-                    alert("Discount applied successfully");
+                    this.$toasted.success('Discount applied successfully', {
+                        position: 'top-right',
+                        duration: 900
+                    });
 
                     return "$" + vm.finalDiscountValue + ".00";
                 } else if (this.finalDiscountType === "%") {
@@ -142,7 +149,10 @@
                     vm.finalDiscountValue =
                     (this.finalSubTotal * vm.finalDiscountValue) / 100;
 
-                    alert("Discount applied successfully");
+                    this.$toasted.success('Discount applied successfully', {
+                        position: 'top-right',
+                        duration: 900
+                    });
 
                     return "$" + vm.finalDiscountValue;
                 }
@@ -258,7 +268,11 @@
                 let type = document.getElementById("discount-type").value;
                 let value = document.getElementById("discount-value").value;
                 if (value == "") {
-                    alert("Please enter discount value");
+                    this.$toasted.error('Please enter discount value', {
+                        position: 'top-right',
+                        duration: 900
+                    });
+
                     return;
                 }
                 this.finalDiscountType = type;
@@ -266,12 +280,22 @@
             },
             removeCartItem(index) {
                 this.addToCarts.splice(index, 1);
+                this.$toasted.success('Item removed from the cart successfully', {
+                    position: 'top-right',
+                    duration: 900
+                });
             },
             plusCartQuantity(addToCart) {
                 let itemInCartForPlus = this.addToCarts.filter(
                     item => item.id === addToCart.id
                 );
                 itemInCartForPlus[0].qty += 1;
+
+                this.$toasted.success('Cart item updated successfully', {
+                    position: 'top-right',
+                    duration: 900
+                });
+
             },
             minusCartQuantity(addToCart) {
                 let itemInCartForMinus = this.addToCarts.filter(
@@ -282,6 +306,11 @@
                 if (itemInCartForMinus[0].qty === 0) {
                     this.addToCarts.splice(0 - 1, 1);
                 }
+
+                this.$toasted.success('Cart item updated successfully', {
+                    position: 'top-right',
+                    duration: 900
+                });
             }
         }
     };

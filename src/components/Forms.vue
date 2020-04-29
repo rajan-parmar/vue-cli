@@ -63,7 +63,10 @@
             addNewProduct() {
                 let incrementValue = 0;
                 if (this.name == "" || this.price == "" || this.url == "") {
-                    alert('Please fill blank field');
+                    this.$toasted.error('Please fill blank field', {
+                        position: 'top-right',
+                        duration: 900
+                    });
                 } else {
                     incrementValue = this.products.length + 1;
                     this.products.push({
@@ -82,6 +85,10 @@
             },
             removeProductUpdate(productId) {
                 this.products = this.products.filter(product => product.id !== productId);
+                this.$toasted.success('Product removed successfully', {
+                    position: 'top-right',
+                    duration: 900
+                });
             }
         }
     };
