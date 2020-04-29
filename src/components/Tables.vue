@@ -89,46 +89,51 @@
             </table>
         </div>
 
+        <Carts :addToCarts="addToCarts" />
     </div>
 </template>
 <script>
-export default {
-  props: {
-    products: {
-      type: Array,
-      required: true
-    }
-  },
-  data() {
-    return {
-      addToCarts: []
+    import Carts from "@/components/Carts.vue";
+    export default {
+        components: {
+            Carts
+        },
+        props: {
+            products: {
+            type: Array,
+            required: true
+            }
+        },
+        data() {
+            return {
+            addToCarts: []
+            };
+        },
+        methods: {
+            addToCart(product) {
+                let itemInCart = this.addToCarts.filter(item => item.id === product.id);
+
+                let isItemInCart = itemInCart.length > 0;
+
+                if (isItemInCart === false) {
+                    this.addToCarts.push(product);
+                } else {
+                    itemInCart[0].qty += product.qty;
+                }
+            },
+            updateProduct(productId, product) {
+                let productInCart = this.addToCarts.filter(item => item.id === productId);
+                if (this.addToCarts.length > 0) {
+                    productInCart[0].name = product.name;
+                    productInCart[0].price = product.price;
+                    productInCart[0].url = product.url;
+                }
+            },
+            removeProduct(productId) {
+                this.$emit("remove-product", productId);
+
+                this.addToCarts = this.addToCarts.filter(cart => cart.id !== productId);
+            }
+        }
     };
-  },
-  methods: {
-    addToCart(product) {
-      let itemInCart = this.addToCarts.filter(item => item.id === product.id);
-
-      let isItemInCart = itemInCart.length > 0;
-
-      if (isItemInCart === false) {
-        this.addToCarts.push(product);
-      } else {
-        itemInCart[0].qty += product.qty;
-      }
-    },
-    updateProduct(productId, product) {
-      let productInCart = this.addToCarts.filter(item => item.id === productId);
-      if (this.addToCarts.length > 0) {
-        productInCart[0].name = product.name;
-        productInCart[0].price = product.price;
-        productInCart[0].url = product.url;
-      }
-    },
-    removeProduct(productId) {
-      this.$emit("remove-product", productId);
-
-      this.addToCarts = this.addToCarts.filter(cart => cart.id !== productId);
-    }
-  }
-};
 </script>
