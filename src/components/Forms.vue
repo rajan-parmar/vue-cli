@@ -41,12 +41,17 @@
 </template>
 <script>
     export default {
+        props: {
+            products: {
+                type: Array,
+                required: true
+            }
+        },
         data() {
             return {
                 name: "",
                 price: "",
                 url: "",
-                products: []
             };
         },
         methods: {
@@ -67,6 +72,7 @@
                         isEdit: false,
                         qty: 1
                     });
+                    this.$emit("inputProduct", this.products);
 
                     this.name = "";
                     this.price = "";

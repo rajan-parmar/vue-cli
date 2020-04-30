@@ -94,11 +94,14 @@
             products: {
                 type: Array,
                 required: true
+            },
+            addToCarts: {
+                type: Array,
+                required: true
             }
         },
         data() {
             return {
-                addToCarts: []
             };
         },
         methods: {
@@ -109,12 +112,14 @@
 
                 if (isItemInCart === false) {
                     this.addToCarts.push(product);
+                    this.$emit("cartProduct", this.addToCarts);
                     this.$toasted.success('Item Added to the cart successfully', {
                         position: 'top-right',
                         duration: 900
                     });
                 } else {
                     itemInCart[0].qty += product.qty;
+                    this.$emit("cartProduct", this.addToCarts);
                     this.$toasted.success('Item Added to the cart successfully', {
                         position: 'top-right',
                         duration: 900
@@ -135,8 +140,6 @@
             },
             removeProduct(productId) {
                 this.$emit("remove-product", productId);
-
-                this.addToCarts = this.addToCarts.filter(cart => cart.id !== productId);
             }
         }
     };

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
-        <Forms :products="products"/>
-        <Tables :products="products" @remove-product="removeProductUpdate" />
+        <Forms @inputProduct="inputProducts" :products="products"/>
+        <Tables @cartProduct="updateCarts" :addToCarts="addToCarts" :products="products" @remove-product="removeProductUpdate" />
         <Carts :addToCarts="addToCarts" />
     </div>
 </template>
@@ -22,13 +22,20 @@
             }
         },
         methods: {
+            inputProducts(variable) {
+                this.products = variable;
+            },
+            updateCarts(variable) {
+                this.addToCarts = variable;
+            },
             removeProductUpdate(productId) {
                 this.products = this.products.filter(product => product.id !== productId);
+                this.addToCarts = this.addToCarts.filter(cart => cart.id !== productId);
                 this.$toasted.success('Product removed successfully', {
                     position: 'top-right',
                     duration: 900
                 });
-            }
+            },
         }
     };
 </script>
