@@ -6,22 +6,22 @@
         </div>
 
         <div class="row mr-3 mt-5 ml-3">
-            <Forms @inputProduct="inputProducts" :products="products"/>
-            <Tables @cartProduct="updateCarts" :addToCarts="addToCarts" :products="products" @remove-product="removeProductUpdate" />
-            <Carts :addToCarts="addToCarts" />
+            <ProductForm @inputProduct="inputProducts" :products="products"/>
+            <ProductTable @cartProduct="updateCarts" :addToCarts="addToCarts" :products="products" @remove-product="removeProductUpdate" />
+            <ProductCarts :addToCarts="addToCarts" />
         </div>
     </div>
   </div>
 </template>
 <script>
     // @ is an alias to /src
-    import Forms from "@/components/ProductForm.vue";
-    import Tables from "@/components/ProductTable.vue";
-    import Carts from "@/components/ProductCarts.vue";
+    import ProductForm from "@/components/ProductForm.vue";
+    import ProductTable from "@/components/ProductTable.vue";
+    import ProductCarts from "@/components/ProductCarts.vue";
     export default {
         name: "Products",
         components: {
-            Forms,Tables,Carts
+            ProductForm,ProductTable,ProductCarts
         },
         data() {
             return {
