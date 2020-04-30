@@ -1,6 +1,6 @@
 <template>
     <div class="col-lg-4">
-        <h3 class="font-weight-bold mb-3">Product Details :</h3>
+        <h3 class="font-weight-bold">Product Details :</h3>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
                 <tr>

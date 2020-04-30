@@ -1,6 +1,6 @@
 <template>
     <div class="col-lg-3 form-section">
-        <h3 class="font-weight-bold mb-3">Product Form :</h3>
+        <h3 class="font-weight-bold">Product Form :</h3>
 
         <form @submit.prevent="addNewProduct">
             <div class="form-group">
@@ -49,6 +49,7 @@
                     });
                 } else {
                     incrementValue = this.products.length + 1;
+
                     this.products.push({
                         id: incrementValue,
                         name: this.name,
@@ -57,7 +58,13 @@
                         isEdit: false,
                         qty: 1
                     });
+
                     this.$emit("inputProduct", this.products);
+
+                    this.$toasted.success('Product Inserted Successfully', {
+                        position: 'top-right',
+                        duration: 900
+                    });
 
                     this.name = "";
                     this.price = "";
