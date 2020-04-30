@@ -1,52 +1,36 @@
 <template>
     <div class="col-lg-5 cart-section">
         <h3 class="font-weight-bold mb-3">Cart Details:</h3>
+
         <p v-if="!addToCarts.length" class="text-secondary">No cart item found.</p>
+
         <span v-for="(addToCart, index) in addToCarts" class="shadow-lg" :key="addToCart.id">
             <div class="row mb-3">
                 <div class="col-lg-3">
-                <img :src="addToCart.url" width="50px" height="50px" />
+                    <img :src="addToCart.url" width="50px" height="50px" />
                 </div>
 
                 <div class="col-lg-4">
-                <span>{{ addToCart.name }}</span
-                ><br />
-                <span>${{ addToCart.price }}</span>
+                    <span>{{ addToCart.name }}</span><br />
+                    <span>${{ addToCart.price }}</span>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-lg-4">
-                <input
-                    v-model="addToCart.qty"
-                    class="form-control"
-                    type="text"
-                    readonly
-                />
+                    <input v-model="addToCart.qty" class="form-control" type="text" readonly />
                 </div>
 
                 <div class="col-lg-3">
-                <button
-                    class="btn btn-secondary mr-1"
-                    title="Plus Quantity"
-                    @click="plusCartQuantity(addToCart)"
-                >
-                    +
-                </button>
-                <button
-                    class="btn btn-secondary mr-1"
-                    title="Minus Quantity"
-                    @click="minusCartQuantity(addToCart)"
-                >
-                    -
-                </button>
-                <button
-                    class="btn btn-danger"
-                    title="Remove Cart"
-                    @click="removeCartItem(index)"
-                >
-                    X
-                </button>
+                    <button class="btn btn-secondary mr-1" title="Plus Quantity" @click="plusCartQuantity(addToCart)">
+                        +
+                    </button>
+                    <button class="btn btn-secondary mr-1" title="Minus Quantity" @click="minusCartQuantity(addToCart)">
+                        -
+                    </button>
+                    <button class="btn btn-danger" title="Remove Cart" @click="removeCartItem(index)">
+                        X
+                    </button>
                 </div>
             </div>
         </span>
@@ -56,23 +40,18 @@
         <form @submit.prevent="applyDiscount">
             <div class="row">
                 <div class="col-lg-3">
-                <select class="form-control" id="discount-type">
-                    <option value="%" selected>%</option>
-                    <option value="$">$</option>
-                </select>
+                    <select class="form-control" id="discount-type">
+                        <option value="%" selected>%</option>
+                        <option value="$">$</option>
+                    </select>
                 </div>
 
                 <div class="col-lg-6">
-                <input
-                    type="text"
-                    class="form-control"
-                    id="discount-value"
-                    placeholder="Discount"
-                />
+                    <input type="text" class="form-control" id="discount-value" placeholder="Discount"/>
                 </div>
 
                 <div class="col-lg-3">
-                <button class="btn btn-info">Apply</button>
+                    <button class="btn btn-info">Apply</button>
                 </div>
             </div>
         </form>

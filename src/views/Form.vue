@@ -1,8 +1,13 @@
 <template>
-    <div class="row">
-        <Forms @inputProduct="inputProducts" :products="products"/>
-        <Tables @cartProduct="updateCarts" :addToCarts="addToCarts" :products="products" @remove-product="removeProductUpdate" />
-        <Carts :addToCarts="addToCarts" />
+    <div>
+        <div class="top-bar text-left">
+            <h2 class="ml-5 mt-3">VueJs Cart Manager</h2>
+        </div>
+        <div class="row mr-3 mt-5 ml-3">
+            <Forms @inputProduct="inputProducts" :products="products"/>
+            <Tables @cartProduct="updateCarts" :addToCarts="addToCarts" :products="products" @remove-product="removeProductUpdate" />
+            <Carts :addToCarts="addToCarts" />
+        </div>
     </div>
 </template>
 <script>
@@ -39,3 +44,10 @@
         }
     };
 </script>
+<style>
+    .top-bar {
+        height: 60px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-radius: 1%;
+    }
+</style>

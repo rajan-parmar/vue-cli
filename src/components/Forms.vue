@@ -4,37 +4,22 @@
 
         <form @submit.prevent="addNewProduct">
             <div class="form-group">
-            <label class="font-weight-bold">Name:</label>
-            <input
-                type="text"
-                class="form-control"
-                placeholder="Insert Name"
-                v-model="name"
-            />
+                <label class="font-weight-bold">Name:</label>
+                <input type="text" class="form-control" placeholder="Insert Name" v-model="name"/>
             </div>
 
             <div class="form-group">
-            <label class="font-weight-bold">Price:</label>
-            <input
-                type="number"
-                class="form-control"
-                placeholder="Insert Price"
-                v-model="price"
-            />
+                <label class="font-weight-bold">Price:</label>
+                <input type="number" class="form-control" placeholder="Insert Price" v-model="price"/>
             </div>
 
             <div class="form-group">
-            <label class="font-weight-bold">Image Url:</label>
-            <input
-                type="text"
-                class="form-control"
-                placeholder="Insert Image Url"
-                v-model="url"
-            />
+                <label class="font-weight-bold">Image Url:</label>
+                <input type="text" class="form-control" placeholder="Insert Image Url" v-model="url"/>
             </div>
 
             <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
     </div>
