@@ -84,14 +84,18 @@
 
                 if (isItemInCart === false) {
                     this.addToCarts.push(product);
+
                     this.$emit("cartProduct", this.addToCarts);
+
                     this.$toasted.success('Item Added to the cart successfully', {
                         position: 'top-right',
                         duration: 900
                     });
                 } else {
                     itemInCart[0].qty += product.qty;
+
                     this.$emit("cartProduct", this.addToCarts);
+
                     this.$toasted.success('Item Added to the cart successfully', {
                         position: 'top-right',
                         duration: 900
@@ -100,11 +104,13 @@
             },
             updateProduct(productId, product) {
                 let productInCart = this.addToCarts.filter(item => item.id === productId);
+
                 if (this.addToCarts.length > 0) {
                     productInCart[0].name = product.name;
                     productInCart[0].price = product.price;
                     productInCart[0].url = product.url;
                 }
+                
                 this.$toasted.success('Product Updated Successfully', {
                     position: 'top-right',
                     duration: 900

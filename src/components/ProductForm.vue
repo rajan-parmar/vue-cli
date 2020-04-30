@@ -41,17 +41,17 @@
         },
         methods: {
             addNewProduct() {
-                let incrementValue = 0;
+                let uniqueId = 0;
                 if (this.name == "" || this.price == "" || this.url == "") {
                     this.$toasted.error('Please fill blank field', {
                         position: 'top-right',
                         duration: 900
                     });
                 } else {
-                    incrementValue = this.products.length + 1;
+                    uniqueId = this.products.length + 1;
 
                     this.products.push({
-                        id: incrementValue,
+                        id: uniqueId,
                         name: this.name,
                         price: this.price,
                         url: this.url,

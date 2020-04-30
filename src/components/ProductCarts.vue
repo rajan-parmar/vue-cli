@@ -95,6 +95,7 @@
             subTotal() {
                 let subTotal = 0;
                 const vm = this;
+
                 this.addToCarts.forEach(item => {
                     subTotal += item.price * item.qty;
                 });
@@ -105,6 +106,7 @@
             },
             discount() {
                 const vm = this;
+
                 if (this.finalDiscountType === "$") {
                     if (this.finalDiscountValue > this.finalSubTotal) {
                         this.$toasted.error('Something went wrong', {
@@ -139,6 +141,7 @@
             shipping() {
                 let shipping = 0;
                 var vm = this;
+
                 if (this.finalSubTotal > 0 && this.finalSubTotal <= 100) {
                     vm.shippingValue = true;
                     shipping = (this.finalSubTotal * 4) / 100;
@@ -154,24 +157,27 @@
             netTotal() {
                 let netTotal = 0;
                 var vm = this;
+
                 if (this.finalDiscountValue > this.finalSubTotal) {
                     return;
                 }
 
                 if (this.shippingValue === true) {
                     vm.netTotalValue = true;
+
                     if (this.finalDiscountValue != "") {
-                    netTotal =
-                        this.finalSubTotal + this.finalShipping - this.finalDiscountValue;
+                        netTotal = this.finalSubTotal + this.finalShipping - this.finalDiscountValue;
                     } else {
-                    netTotal = this.finalSubTotal + this.finalShipping;
+                        netTotal = this.finalSubTotal + this.finalShipping;
                     }
+
                     vm.finalNetTotal = netTotal;
 
                     return "$" + netTotal.toFixed(2);
                 } else {
                     vm.finalNetTotal = 0;
                     vm.netTotalValue = false;
+
                     return "$" + netTotal.toFixed(2);
                 }
             },
@@ -244,8 +250,8 @@
         },
         methods: {
             applyDiscount() {
-                let type = document.getElementById("discount-type").value;
-                let value = document.getElementById("discount-value").value;
+                let discountType = document.getElementById("discount-type").value;
+                let discountValue = document.getElementById("discount-value").value;
 
                 if (this.addToCarts.length === 0) {
                     this.$toasted.error('Empty Cart', {
@@ -256,7 +262,7 @@
                     return;
                 }
 
-                if (value == "") {
+                if (discountValue == "") {
                     this.$toasted.error('Please enter discount value', {
                         position: 'top-right',
                         duration: 900
@@ -265,8 +271,8 @@
                     return;
                 }
 
-                this.finalDiscountType = type;
-                this.finalDiscountValue = value;
+                this.finalDiscountType = discountType;
+                this.finalDiscountValue = discountValue;
             },
             removeCartItem(index) {
                 this.addToCarts.splice(index, 1);
