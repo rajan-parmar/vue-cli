@@ -1,112 +1,104 @@
 <template>
-    <div class="row">
-        <div class="col-lg-6">
+    <div class="col-lg-4">
         <h3 class="font-weight-bold mb-3">Product Details :</h3>
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Name Image</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Name Image</th>
+                <th>Action</th>
+            </tr>
+            </thead>
 
-                <tbody>
-                <tr v-if="!products.length">
-                    <td colspan="5" class="text-center">No Records</td>
-                </tr>
-                <tr v-for="product in products" :key="product.id">
-                    <td>{{ product.id }}</td>
-                    <td>
-                    <input
-                        v-model="product.name"
-                        v-if="product.isEdit"
-                        class="form-control"
-                        @keyup.enter="
-                        product.isEdit = false;
-                        updateProduct(product.id, product);
-                        "
-                    />
-                    <label v-else @click="product.isEdit = true">{{
-                        product.name
-                    }}</label>
-                    </td>
+            <tbody>
+            <tr v-if="!products.length">
+                <td colspan="5" class="text-center">No Records</td>
+            </tr>
+            <tr v-for="product in products" :key="product.id">
+                <td>{{ product.id }}</td>
+                <td>
+                <input
+                    v-model="product.name"
+                    v-if="product.isEdit"
+                    class="form-control"
+                    @keyup.enter="
+                    product.isEdit = false;
+                    updateProduct(product.id, product);
+                    "
+                />
+                <label v-else @click="product.isEdit = true">{{
+                    product.name
+                }}</label>
+                </td>
 
-                    <td>
-                    <input
-                        v-model="product.price"
-                        v-if="product.isEdit"
-                        class="form-control"
-                        @keyup.enter="
-                        product.isEdit = false;
-                        updateProduct(product.id, product);
-                        "
-                    />
-                    <label v-else @click="product.isEdit = true"
-                        >${{ product.price }}</label
-                    >
-                    </td>
+                <td>
+                <input
+                    v-model="product.price"
+                    v-if="product.isEdit"
+                    class="form-control"
+                    @keyup.enter="
+                    product.isEdit = false;
+                    updateProduct(product.id, product);
+                    "
+                />
+                <label v-else @click="product.isEdit = true"
+                    >${{ product.price }}</label
+                >
+                </td>
 
-                    <td>
-                    <input
-                        v-model="product.url"
-                        v-if="product.isEdit"
-                        class="form-control"
-                        @keyup.enter="
-                        product.isEdit = false;
-                        updateProduct(product.id, product);
-                        "
-                    />
-                    <img
-                        v-else
-                        @click="product.isEdit = true"
-                        :src="product.url"
-                        width="50px"
-                        height="50px"
-                    />
-                    </td>
+                <td>
+                <input
+                    v-model="product.url"
+                    v-if="product.isEdit"
+                    class="form-control"
+                    @keyup.enter="
+                    product.isEdit = false;
+                    updateProduct(product.id, product);
+                    "
+                />
+                <img
+                    v-else
+                    @click="product.isEdit = true"
+                    :src="product.url"
+                    width="50px"
+                    height="50px"
+                />
+                </td>
 
-                    <td>
-                    <button
-                        class="btn btn-danger mr-2"
-                        title="Delete Todo"
-                        @click="removeProduct(product.id)"
-                    >
-                        <i class="fas fa-trash-alt text-light"></i>
-                    </button>
-                    <button
-                        class="btn btn-primary"
-                        title="Add To Cart"
-                        @click="addToCart(product)"
-                    >
-                        <i class="fas fa-shopping-cart text-light"></i>
-                    </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <Carts :addToCarts="addToCarts" />
+                <td>
+                <button
+                    class="btn btn-danger mr-2"
+                    title="Delete Todo"
+                    @click="removeProduct(product.id)"
+                >
+                    <i class="fas fa-trash-alt text-light"></i>
+                </button>
+                <button
+                    class="btn btn-primary"
+                    title="Add To Cart"
+                    @click="addToCart(product)"
+                >
+                    <i class="fas fa-shopping-cart text-light"></i>
+                </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 <script>
-    import Carts from "@/components/Carts.vue";
     export default {
-        components: {
-            Carts
-        },
         props: {
             products: {
-            type: Array,
-            required: true
+                type: Array,
+                required: true
             }
         },
         data() {
             return {
-            addToCarts: []
+                addToCarts: []
             };
         },
         methods: {

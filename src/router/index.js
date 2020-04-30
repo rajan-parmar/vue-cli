@@ -1,24 +1,19 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Form from "../views/Form.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Form",
+    component: Form
   },
-  {
-    path: "/form",
-    name: "form",
-    component: () => import(/* webpackChunkName: "form" */ "../views/Form.vue")
-  }
 ];
 
 const router = new VueRouter({
-  routes
+    routes
 });
 
 export default router;

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-lg-6 cart-section">
+    <div class="col-lg-5 cart-section">
         <h3 class="font-weight-bold mb-3">Cart Details:</h3>
         <p v-if="!addToCarts.length" class="text-secondary">No cart item found.</p>
         <span v-for="(addToCart, index) in addToCarts" class="shadow-lg" :key="addToCart.id">
