@@ -83,7 +83,7 @@
                 let isItemInCart = itemInCart.length > 0;
 
                 if (isItemInCart === false) {
-                    this.addToCarts.push(product);
+                    this.addToCarts.push(Object.assign({}, product));
 
                     this.$emit("cartProduct", this.addToCarts);
 
@@ -110,7 +110,6 @@
                     productInCart[0].price = product.price;
                     productInCart[0].url = product.url;
                 }
-                
                 this.$toasted.success('Product Updated Successfully', {
                     position: 'top-right',
                     duration: 900
