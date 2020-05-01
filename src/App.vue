@@ -33,8 +33,8 @@
             inputProducts(productAddedData) {
                 this.products = productAddedData;
             },
-            updateCarts(addToCartData) {
-                this.addToCarts = addToCartData;
+            updateCarts(cartQuantityValue, index) {
+                this.addToCarts[index].qty = cartQuantityValue;
             },
             removeProductUpdate(productId) {
                 this.products = this.products.filter(product => product.id !== productId);

@@ -17,7 +17,7 @@
                     <td colspan="5" class="text-center">No Records</td>
                 </tr>
 
-                <tr v-for="product in products" :key="product.id">
+                <tr v-for="(product, index) in products" :key="product.id">
                     <td>{{ product.id }}</td>
                     <td>
                         <input v-model="product.name"
@@ -51,7 +51,7 @@
                             <i class="fas fa-trash-alt text-light"></i>
                         </button>
 
-                        <button class="btn btn-primary" title="Add To Cart" @click="addToCart(product)">
+                        <button class="btn btn-primary" title="Add To Cart" @click="addToCart(product, index)">
                             <i class="fas fa-shopping-cart text-light"></i>
                         </button>
                     </td>
@@ -77,7 +77,7 @@
             };
         },
         methods: {
-            addToCart(product) {
+            addToCart(product, index) {
                 let itemInCart = this.addToCarts.filter(item => item.id === product.id);
 
                 let isItemInCart = itemInCart.length > 0;
@@ -85,7 +85,7 @@
                 if (isItemInCart === false) {
                     this.addToCarts.push(Object.assign({}, product));
 
-                    this.$emit("cartProduct", this.addToCarts);
+                    this.$emit("cartProduct", product.qty, index);
 
                     this.$toasted.success('Item Added to the cart successfully', {
                         position: 'top-right',
@@ -94,7 +94,7 @@
                 } else {
                     itemInCart[0].qty += product.qty;
 
-                    this.$emit("cartProduct", this.addToCarts);
+                    this.$emit("cartProduct", itemInCart[0].qty, index);
 
                     this.$toasted.success('Item Added to the cart successfully', {
                         position: 'top-right',
